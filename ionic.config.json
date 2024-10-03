@@ -1,0 +1,7 @@
+{
+  "name": "films-stream",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
