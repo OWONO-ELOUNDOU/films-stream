@@ -13,8 +13,7 @@ import {
   IonSkeletonText,
   IonInfiniteScroll,
   IonInfiniteScrollContent,
-  InfiniteScrollCustomEvent, IonAvatar, IonBadge
-} from '@ionic/angular/standalone';
+  InfiniteScrollCustomEvent, IonAvatar, IonBadge, IonSpinner } from '@ionic/angular/standalone';
 
 // Import Service
 import { MovieService } from '../services/movie.service';
@@ -29,7 +28,7 @@ import {RouterLink} from "@angular/router";
   templateUrl: 'home-defer.page.html',
   styleUrls: ['home-defer.page.scss'],
   standalone: true,
-  imports: [
+  imports: [IonSpinner, 
     IonAlert,
     IonHeader,
     IonToolbar,

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {delay, Observable} from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ApiResult, MovieResult } from './interfaces';
 
