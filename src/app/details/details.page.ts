@@ -1,20 +1,73 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, inject, signal, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular/standalone';
+
+//Import Components
+import { cashOutline, calendarOutline } from "ionicons/icons";
+import { addIcons } from "ionicons";
+import {
+  IonBackButton,
+  IonButtons,
+  IonContent,
+  IonHeader,
+  IonTitle,
+  IonToolbar,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
+  IonText,
+  IonCardContent,
+  IonLabel,
+  IonItem,
+  IonIcon
+} from '@ionic/angular/standalone';
+
+// Import Service
+import { MovieService } from '../services/movie.service';
+
+// Import Models
+import { MovieResult } from '../services/interfaces';
 
 @Component({
   selector: 'app-details',
   templateUrl: './details.page.html',
   styleUrls: ['./details.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    IonContent,
+    IonHeader,
+    IonTitle,
+    IonToolbar,
+    CommonModule,
+    FormsModule,
+    IonButtons,
+    IonBackButton,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardSubtitle,
+    IonText,
+    IonCardContent,
+    IonLabel,
+    IonItem,
+    IonIcon
+  ]
 })
-export class DetailsPage implements OnInit {
+export class DetailsPage {
+  private movieService = inject(MovieService);
+  public imageBaseUrl = 'https://image.tmdb.org/t/p';
+  public movie: WritableSignal<MovieResult | null> = signal(null);
 
-  constructor() { }
+  @Input()
+  set id(movieId: string) {
+    this.movieService.getMovieDetails(movieId).subscribe((movie) => {
+      this.movie.set(movie);
+    })
+  }
 
-  ngOnInit() {
+  constructor() {
+    addIcons({ cashOutline, calendarOutline });
   }
 
 }
